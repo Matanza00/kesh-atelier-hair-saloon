@@ -1,5 +1,9 @@
 # Kesh Atelier - Hair Saloon
 
+**Live site:** https://kesh-atelier.vercel.app
+
+Made by Usman Nadeem · https://github.com/Matanza00
+
 Cinematic website for a hair and beauty salon in Kalispell, Montana, with online booking and Ava, a voice receptionist built on ElevenLabs Agents. Hosted on Vercel.
 
 ## What's here
