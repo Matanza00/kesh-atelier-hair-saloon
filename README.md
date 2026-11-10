@@ -1,0 +1,23 @@
+# Kesh Atelier
+
+Cinematic website for a hair and beauty salon in Kalispell, Montana, with online booking and Ava, a voice receptionist built on ElevenLabs Agents. Hosted on Vercel.
+
+## What's here
+- `index.html` – the website (built from the design source with `build.py`)
+- `hero/`, `svc/`, `ba/` – scroll-scrubbed video frames and before/after photos
+- `api/book.js` – saves a booking request (checks hours, double bookings, phone format)
+- `api/availability.js` – open start times for a day and stylist
+- `api/bookings.js` – list of booking requests for the owner (needs `ADMIN_KEY`)
+- `api/config.js` – gives the page the ElevenLabs agent ID
+- `admin.html` – booking list for the salon (open `/admin`, enter the admin key)
+- `agent/` – Ava's prompt, first message and client-tool definitions
+- `lib/salon.mjs` – services, stylists and opening hours used by the API (keep in sync with `SALON` in `index.html`)
+
+## Environment variables (Vercel → Project → Settings → Environment Variables)
+| Name | What it is |
+|---|---|
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Set automatically when you add **Upstash for Redis** from Vercel Storage |
+| `ELEVENLABS_AGENT_ID` | The ID of Ava's agent in ElevenLabs |
+| `ADMIN_KEY` | Any long secret; used to open `/admin` |
+
+After changing environment variables, redeploy.

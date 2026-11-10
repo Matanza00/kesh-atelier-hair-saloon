@@ -1,0 +1,6 @@
+{
+  "name": "kesh-atelier",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" }
+}

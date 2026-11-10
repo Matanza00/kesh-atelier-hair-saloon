@@ -1,0 +1,1510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kesh Atelier · Hair & Beauty Salon, Kalispell MT</title>
+<meta name="description" content="Kesh Atelier — hair and beauty salon: precision cuts, hand-mixed color, styling and restorative treatments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one fixed WebGL stage behind the page. Dark bands are see-through windows onto it (hero, before/after,
+   pinned service story); light paper bands cover it (lookbook, menu, reviews). Gold is the only accent. */
+:root{
+  color-scheme: dark;
+  --ink:#171412;          /* warm charcoal stage */
+  --ink-2:#1f1b18;
+  --paper:#f6f2eb;        /* gallery paper */
+  --paper-2:#eee8de;
+  --gold:#c6a165;         /* brass button */
+  --gold-deep:#8a6a34;    /* gold readable on paper */
+  --on-dark:#f2ece4;
+  --on-paper:#1e1a16;
+  --mist-dark:#aaa197;
+  --mist-paper:#6c635a;
+  --line-dark:rgba(242,236,228,.13);
+  --line-paper:rgba(30,26,22,.13);
+  --f-display:"Playfair Display","Bodoni 72","Didot",Georgia,serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --nav-h:64px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--ink);color:var(--on-dark);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:80;background:var(--paper)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+::selection{background:var(--gold);color:var(--ink)}
+.wrap{max-width:1280px;margin:0 auto;width:100%;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:760px){.wrap{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
+
+#stage{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.letterbox{position:fixed;left:0;right:0;height:9vh;background:#0b0908;z-index:90;pointer-events:none}
+.letterbox.t{top:0;transform-origin:top}.letterbox.b{bottom:0;transform-origin:bottom}
+main,footer{position:relative;z-index:2}
+
+/* ---------- type ---------- */
+.eyebrow{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0}
+.light .eyebrow{color:var(--gold-deep)}
+.h-xl,.h-lg{font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance;margin:0}
+.h-xl{font-size:clamp(2.6rem,7.2vw,6.4rem);line-height:.98}
+.h-lg{font-size:clamp(2rem,4.4vw,3.6rem);line-height:1.04}
+.h-xl em,.h-lg em{font-style:italic;text-transform:none;color:var(--gold)}
+.light .h-lg em{color:var(--gold-deep)}
+.sub{color:var(--mist-dark);max-width:52ch;margin:0}
+.light .sub{color:var(--mist-paper)}
+.center{text-align:center;margin-inline:auto}
+.center .sub{margin-inline:auto}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-body);font-weight:500;font-size:.9rem;text-decoration:none;
+  padding:13px 24px;border:1px solid var(--line-dark);background:transparent;color:var(--on-dark);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn.gold:hover{background:var(--on-dark);border-color:var(--on-dark);color:var(--ink)}
+.pill{border-radius:999px;padding:10px 22px;font-size:.85rem}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:70;background:rgba(246,242,235,.96);color:var(--on-paper);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-paper);
+  padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--f-display);font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.nav-links{display:flex;gap:34px;font-size:.88rem}
+.nav-links a{text-decoration:none;color:#4b443d;transition:color .2s}
+.nav-links a:hover{color:var(--on-paper)}
+.nav .pill{color:var(--ink)}
+.nav .pill:hover{background:var(--on-paper);border-color:var(--on-paper);color:var(--paper)}
+
+/* ---------- hero (pinned) ---------- */
+.hero{position:relative;height:320vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.hero .stage{background:#1a1512 url("hero/f001.webp") center/cover no-repeat}
+#heroFrames{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-load{position:absolute;z-index:2;top:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 20px);right:max(40px,env(safe-area-inset-right,0px));
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--on-dark);opacity:.7;font-variant-numeric:tabular-nums;transition:opacity .6s}
+.hero-load.done{opacity:0}
+.hero .stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(75deg,rgba(23,20,18,.82) 0%,rgba(23,20,18,.35) 45%,rgba(23,20,18,0) 70%),linear-gradient(0deg,rgba(23,20,18,.7),transparent 35%)}
+.hero-copy{position:absolute;left:0;right:0;bottom:12vh;z-index:2;will-change:transform,opacity}
+.hero-copy .inner{max-width:720px;display:flex;flex-direction:column;gap:22px}
+.hero-copy .sub{font-size:1.08rem;color:#d7cfc6}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.scroll-hint{position:absolute;right:max(40px,env(safe-area-inset-right,0px));bottom:12vh;z-index:2;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mist-dark);writing-mode:vertical-rl;display:flex;align-items:center;gap:12px}
+.scroll-hint::after{content:"";width:1px;height:60px;background:linear-gradient(var(--gold),transparent);animation:drip 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- before / after ---------- */
+.ba{padding-block:130px 110px}
+.ba header{display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:44px}
+.ba .drag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist-dark)}
+.ba .drag b{display:block;color:var(--gold);font-size:1rem;letter-spacing:0;font-weight:400;margin-top:4px}
+.ba-box{position:relative;width:100%;max-width:560px;margin-inline:auto;aspect-ratio:4/5;border:1px solid var(--line-dark);overflow:hidden;background:#b9b9bb;--split:50%;touch-action:pan-y}
+.ba-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none}
+.ba-box .img-after{clip-path:inset(0 0 0 var(--split))}
+.ba-notes{max-width:560px;margin-inline:auto}
+.ba-box:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:4px}
+.tag{position:absolute;top:16px;z-index:2;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px;pointer-events:none}
+.tag.before{left:16px;background:rgba(23,20,18,.85);color:var(--on-dark)}
+.tag.after{right:16px;background:var(--gold);color:var(--ink)}
+.handle{position:absolute;top:0;bottom:0;left:var(--split);width:2px;margin-left:-1px;background:var(--on-dark);z-index:2;pointer-events:none}
+.handle::after{content:"\2039\00a0\203A";position:absolute;top:50%;left:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:var(--on-dark);color:var(--ink);
+  display:grid;place-items:center;font-size:1.05rem;letter-spacing:.1em;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.ba-box input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;z-index:3}
+.no-gl .ba-box{background:linear-gradient(90deg,#3a3430 0 var(--split),#7a4a2c var(--split) 100%)}
+.ba-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:14px;font-family:var(--f-mono);font-size:.72rem;color:var(--mist-dark)}
+.ba-notes span:last-child{text-align:right;color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:70px;text-align:center}
+.stats b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(2.2rem,4.6vw,3.6rem);color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.stats span{display:block;margin-top:10px;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dark)}
+
+/* ---------- pinned story ---------- */
+.story{position:relative;height:540vh}
+.story .stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(23,20,18,.9) 0%,rgba(23,20,18,.62) 36%,rgba(23,20,18,0) 62%)}
+#storyFrames{position:absolute;inset:0;width:100%;height:100%;display:block}
+.story-copy{position:absolute;inset:0;z-index:2;display:flex;align-items:center;padding-top:var(--nav-h)}
+.steps{display:grid;max-width:480px}
+.step{grid-area:1/1;display:flex;flex-direction:column;gap:18px;opacity:0;visibility:hidden;transform:translateY(24px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1),visibility 0s .6s}
+.step.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s ease .1s,transform .8s cubic-bezier(.2,.7,.2,1) .1s,visibility 0s}
+.step .sub{color:#d2c9bf}
+.mini{list-style:none;margin:4px 0 0;padding:0;font-size:.92rem}
+.mini li{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid var(--line-dark)}
+.mini li span:last-child{font-family:var(--f-mono);font-size:.8rem;color:var(--gold);white-space:nowrap;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;padding:6px 10px;border:1px solid var(--line-dark);color:var(--mist-dark)}
+.chip b{color:var(--on-dark);font-weight:500}
+.swatches{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.swatch{appearance:none;font:inherit;color:var(--on-dark);background:rgba(23,20,18,.5);border:1px solid var(--line-dark);padding:0 0 7px;cursor:pointer;display:flex;flex-direction:column;gap:5px;min-width:0;transition:border-color .2s,transform .2s}
+.swatch:hover{transform:translateY(-2px)}
+.swatch i{display:block;width:100%;aspect-ratio:1/1;max-width:100%;background:linear-gradient(180deg,var(--a),var(--b))}
+.swatch span{font-family:var(--f-mono);font-size:.74rem;text-align:center;font-variant-numeric:tabular-nums}
+.swatch[aria-pressed="true"]{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.picked{font-family:var(--f-mono);font-size:.74rem;color:var(--mist-dark);margin:0}
+.picked b{color:var(--gold);font-weight:500}
+.patterns{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.pattern{appearance:none;font:inherit;color:var(--on-dark);background:rgba(23,20,18,.5);border:1px solid var(--line-dark);padding:10px 6px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.pattern svg{width:52px;height:24px;max-width:100%}
+.pattern path{fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linecap:round}
+.pattern span{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase}
+.pattern[aria-pressed="true"]{border-color:var(--gold);background:rgba(198,161,101,.12)}
+.shine-row{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dark);margin-bottom:8px}
+.shine-row output{color:var(--gold);font-variant-numeric:tabular-nums}
+.meter{height:3px;background:var(--line-dark)}
+.meter i{display:block;height:100%;width:12%;background:linear-gradient(90deg,#9a6a3a,var(--gold))}
+.readout{position:absolute;z-index:2;top:calc(var(--nav-h) + 22px);right:max(40px,env(safe-area-inset-right,0px));font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;color:var(--mist-dark);text-align:right;line-height:1.8;font-variant-numeric:tabular-nums}
+.readout b{color:var(--on-dark);font-weight:500}
+.progress{position:absolute;z-index:2;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 26px)}
+.progress ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.progress li{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dark);display:flex;flex-direction:column;gap:8px;transition:color .3s}
+.progress li.on{color:var(--on-dark)}
+.progress li i{display:block;height:2px;background:var(--line-dark);position:relative;overflow:hidden}
+.progress li i::after{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(var(--f,0));transform-origin:left}
+
+/* ---------- light bands ---------- */
+.light{background:var(--paper);color:var(--on-paper);color-scheme:light}
+.looks{position:relative}
+.looks-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:40px;padding-top:var(--nav-h)}
+.looks header{display:flex;flex-direction:column;gap:12px;align-items:center}
+.track{display:flex;gap:22px;width:max-content;will-change:transform;
+  padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}
+.look{flex:0 0 clamp(240px,23vw,320px);margin:0;display:flex;flex-direction:column;gap:12px}
+.look canvas{display:block;width:100%;aspect-ratio:3/4;max-width:100%;background:#2a221d}
+.look figcaption{display:flex;flex-direction:column;gap:2px}
+.look small{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep)}
+.look strong{font-family:var(--f-display);font-weight:400;font-size:1.25rem;line-height:1.2}
+.look span{font-size:.82rem;color:var(--mist-paper)}
+
+.process{padding-block:130px}
+.process header{display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:60px}
+.proc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line-dark);border:1px solid var(--line-dark)}
+.proc li{background:rgba(23,20,18,.92);padding:30px 24px 26px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.proc .n{font-family:var(--f-display);font-size:2.6rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--gold)}
+.proc h3{font-family:var(--f-display);font-weight:400;font-size:1.3rem;margin:0}
+.proc p{margin:0;color:var(--mist-dark);font-size:.92rem}
+.proc .t{margin-top:auto;padding-top:10px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+
+.menu-sec{padding-block:120px;background:var(--paper-2)}
+.menu-sec header{display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:56px}
+.menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px}
+.menu-grid h3{font-family:var(--f-display);font-weight:400;font-size:1.5rem;margin:0 0 10px;padding-bottom:12px;border-bottom:1px solid var(--on-paper)}
+.menu-grid ul{list-style:none;margin:0;padding:0}
+.menu-grid li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px 0;border-bottom:1px solid var(--line-paper);font-size:.94rem}
+.menu-grid li small{grid-column:1;font-family:var(--f-mono);font-size:.7rem;color:var(--mist-paper)}
+.menu-grid li b{grid-row:1;grid-column:2;font-family:var(--f-mono);font-weight:500;font-size:.82rem;color:var(--gold-deep);white-space:nowrap;font-variant-numeric:tabular-nums}
+.menu-note{margin:36px 0 0;font-size:.85rem;color:var(--mist-paper);text-align:center}
+
+.reviews{padding-block:110px}
+.reviews header{display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:46px}
+.rev{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.rev article{background:#fffdf9;border:1px dashed rgba(30,26,22,.28);padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.rev .stars{display:flex;gap:3px}
+.rev .stars svg{width:14px;height:14px;fill:none;stroke:var(--gold-deep)}
+.rev blockquote{margin:0;font-family:var(--f-display);font-style:italic;font-size:1.08rem;line-height:1.5;color:var(--mist-paper)}
+.rev cite{font-style:normal;font-size:.82rem;color:var(--mist-paper);margin-top:auto}
+.rev cite b{display:block;color:var(--on-paper);font-weight:500}
+
+.marquee{overflow:hidden;border-block:1px solid var(--line-dark);padding-block:26px;background:var(--ink)}
+.marquee .run{display:flex;width:max-content;animation:run 38s linear infinite}
+.marquee span{font-family:var(--f-display);font-style:italic;font-size:clamp(1.5rem,3vw,2.4rem);white-space:nowrap;padding-right:44px;color:var(--on-dark)}
+.marquee span:nth-child(even){color:var(--gold)}
+@keyframes run{to{transform:translateX(-50%)}}
+
+.cta{padding-block:130px 110px;background:var(--ink)}
+.cta header{display:flex;flex-direction:column;gap:18px;align-items:center;margin-bottom:56px}
+.book{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);border:1px solid var(--line-dark);padding:clamp(22px,3.5vw,44px);background:var(--ink-2)}
+.ways{display:grid;gap:14px;align-content:start}
+.way{appearance:none;font:inherit;color:var(--on-dark);text-align:left;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 18px;align-items:center;
+  padding:24px 26px;border:1px solid var(--line-dark);background:var(--ink);transition:border-color .25s,background .25s}
+.way:hover{border-color:var(--gold);background:#1c1815}
+.way .eyebrow{grid-column:1}
+.way strong{grid-column:1;font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.1}
+.way span.d{grid-column:1;color:var(--mist-dark);font-size:.92rem}
+.way .go{grid-column:2;grid-row:1/4;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-dark);display:grid;place-items:center;color:var(--gold);transition:background .25s,color .25s}
+.way:hover .go{background:var(--gold);color:var(--ink)}
+.way .go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- forms (booking popup) ---------- */
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.wide{grid-column:1/-1}
+label{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dark)}
+label small{text-transform:none;letter-spacing:0;font-family:var(--f-body)}
+input,select,textarea{font:inherit;color:var(--on-dark);background:var(--ink);border:1px solid var(--line-dark);padding:12px;border-radius:0;width:100%;min-width:0}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#e08a6d}
+select option,select optgroup{background:var(--ink-2);color:var(--on-dark)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-err{grid-column:1/-1;margin:0;color:#f0a58b;font-size:.9rem}
+.form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.linkish{appearance:none;background:none;border:0;padding:0;font:inherit;font-size:.9rem;color:var(--gold);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+.modal{width:min(720px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line-dark);background:var(--ink-2);color:var(--on-dark);
+  overflow:auto;overscroll-behavior:contain}
+.modal::backdrop{background:rgba(10,8,7,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.modal[open]{animation:pop .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:26px 28px 18px;border-bottom:1px solid var(--line-dark);position:sticky;top:0;background:var(--ink-2);z-index:1}
+.modal-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.1;margin:6px 0 0}
+.modal-head p.sub{margin-top:6px;font-size:.9rem}
+.x{appearance:none;width:40px;height:40px;flex:0 0 40px;border-radius:50%;border:1px solid var(--line-dark);background:transparent;color:var(--on-dark);font-size:1.3rem;line-height:1;cursor:pointer}
+.x:hover{border-color:var(--gold);color:var(--gold)}
+.modal-body{padding:24px 28px 28px}
+.done{display:flex;flex-direction:column;gap:14px}
+.done h3{font-family:var(--f-display);font-weight:400;font-size:1.8rem;margin:0}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;padding:16px 18px;border:1px solid var(--line-dark);font-size:.94rem}
+.done dt{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist-dark);padding-top:3px}
+.done dd{margin:0}
+.ref{font-family:var(--f-mono);color:var(--gold);letter-spacing:.08em}
+
+/* ---------- Ava, virtual receptionist ---------- */
+.ava-fab{position:fixed;z-index:75;right:calc(env(safe-area-inset-right,0px) + 20px);bottom:calc(env(safe-area-inset-bottom,0px) + 20px);
+  display:flex;align-items:center;gap:12px;padding:8px 18px 8px 8px;border-radius:999px;border:1px solid rgba(198,161,101,.45);
+  background:rgba(23,20,18,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--on-dark);font:inherit;cursor:pointer;
+  box-shadow:0 10px 34px rgba(0,0,0,.4);transition:transform .25s,border-color .25s}
+.ava-fab:hover{transform:translateY(-2px);border-color:var(--gold)}
+.ava-fab b{display:block;font-weight:500;font-size:.9rem;line-height:1.2}
+.ava-fab small{display:block;font-size:.72rem;color:var(--mist-dark);line-height:1.2}
+.orb{position:relative;width:40px;height:40px;flex:0 0 40px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f6e2bd 0%,var(--gold) 38%,#7a5726 78%,#3a2a14 100%);box-shadow:0 0 0 0 rgba(198,161,101,.5);animation:breathe 2.8s ease-in-out infinite}
+.orb::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(198,161,101,.4);animation:ring 2.8s ease-out infinite}
+@keyframes breathe{50%{transform:scale(1.05)}}
+@keyframes ring{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+.ava{position:fixed;z-index:76;right:calc(env(safe-area-inset-right,0px) + 20px);bottom:calc(env(safe-area-inset-bottom,0px) + 20px);
+  width:min(380px,calc(100vw - 32px));max-height:min(620px,calc(100dvh - 120px));display:flex;flex-direction:column;
+  background:var(--ink-2);border:1px solid rgba(198,161,101,.4);box-shadow:0 24px 60px rgba(0,0,0,.55);color:var(--on-dark)}
+.ava[open-anim]{animation:pop .35s cubic-bezier(.2,.7,.2,1)}
+.ava-head{display:flex;align-items:center;gap:14px;padding:18px 18px 14px;border-bottom:1px solid var(--line-dark)}
+.ava-head .orb{width:52px;height:52px;flex-basis:52px;animation:none;transform:scale(var(--lvl,1));transition:transform .08s linear}
+.ava-head .orb::after{animation:none;opacity:0}
+.ava[data-mode="speaking"] .ava-head .orb::after{animation:ring 1.4s ease-out infinite}
+.ava-head h2{font-family:var(--f-display);font-weight:400;font-size:1.35rem;margin:0;line-height:1.1}
+.ava-status{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;color:var(--gold);margin:4px 0 0}
+.ava-head .x{margin-left:auto}
+.ava-log{flex:1 1 auto;min-height:120px;overflow:auto;padding:14px 18px;display:flex;flex-direction:column;gap:10px;font-size:.92rem}
+.ava-log p{margin:0;max-width:88%;padding:9px 12px;line-height:1.45}
+.ava-log .ai{background:#2a241f;align-self:flex-start}
+.ava-log .user{background:rgba(198,161,101,.16);align-self:flex-end}
+.ava-log .sys{align-self:center;max-width:100%;font-family:var(--f-mono);font-size:.7rem;color:var(--mist-dark);text-align:center;background:none;padding:2px}
+.ava-card{margin:0 18px 12px;padding:12px 14px;border:1px dashed rgba(198,161,101,.45);font-size:.84rem}
+.ava-card h3{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dark);font-weight:400;margin:0 0 6px}
+.ava-card dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0}
+.ava-card dt{color:var(--mist-dark)}.ava-card dd{margin:0}
+.ava-foot{display:flex;gap:10px;padding:12px 18px 14px;border-top:1px solid var(--line-dark)}
+.ava-foot .btn{flex:1;padding:11px 14px}
+.ava-note{margin:0;padding:0 18px 14px;font-size:.72rem;color:var(--mist-dark);line-height:1.45}
+.contact{display:flex;flex-direction:column;gap:22px;border-left:1px solid var(--line-dark);padding-left:clamp(0px,3vw,40px)}
+.contact h3{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dark);font-weight:400;margin:0 0 6px}
+.contact p{margin:0}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:3px 18px;margin:0;font-family:var(--f-mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+.hours dt{color:var(--mist-dark)}.hours dd{margin:0}
+.phone{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phone span{font-family:var(--f-display);font-size:1.45rem;user-select:all}
+.phone .btn{padding:8px 14px;font-size:.8rem}
+
+footer{background:#110f0d;border-top:1px solid var(--line-dark);padding-block:64px calc(env(safe-area-inset-bottom,0px) + 40px)}
+.foot{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:32px}
+.foot h4{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dark);font-weight:400;margin:0 0 12px}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.foot a{text-decoration:none;color:#cfc6bc}.foot a:hover{color:var(--gold)}
+.foot .brand{display:inline-block;margin-bottom:10px}
+.foot p{margin:0;color:var(--mist-dark);font-size:.9rem;max-width:34ch}
+.legal{margin-top:48px;padding-top:20px;border-top:1px solid var(--line-dark);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mist-dark)}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .nav-links{display:none}
+  .proc,.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .book{grid-template-columns:1fr}
+  .contact{border-left:0;padding-left:0;border-top:1px solid var(--line-dark);padding-top:24px}
+  .foot{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .readout{display:none}
+}
+@media (max-width:760px){
+  :root{--nav-h:58px}
+  .brand{font-size:.92rem;letter-spacing:.1em}
+  .hero{height:260vh}
+  .hero .stage{background-position:62% center}
+  .hero-load{right:max(16px,env(safe-area-inset-right,0px))}
+  .hero .stage::after{background:linear-gradient(0deg,rgba(23,20,18,.92) 0%,rgba(23,20,18,.55) 45%,rgba(23,20,18,0) 75%)}
+  .hero-copy{bottom:9vh}
+  .scroll-hint{display:none}
+  .ba{padding-block:90px 80px}
+  .stats{margin-top:48px}
+  .story .stage::after{background:linear-gradient(0deg,rgba(23,20,18,.95) 0%,rgba(23,20,18,.75) 45%,rgba(23,20,18,0) 70%)}
+  .story-copy{align-items:flex-end;padding-bottom:96px}
+  .step{gap:12px}
+  .step .sub{font-size:.92rem}
+  .mini{display:none}
+  .patterns{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pattern svg{width:40px}
+  .progress li{font-size:.56rem;letter-spacing:.1em}
+  .looks{height:auto!important}
+  .looks-stage{position:static;height:auto;padding-block:90px 70px}
+  .track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;transform:none!important;padding-bottom:12px}
+  .look{flex-basis:72vw;scroll-snap-align:center}
+  .process,.menu-sec,.reviews,.cta{padding-block:90px}
+  .proc,.menu-grid,.rev{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .ba-notes{font-size:.64rem}
+  .modal{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0}
+  .modal-head{padding:calc(env(safe-area-inset-top,0px) + 18px) max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px))}
+  .modal-body{padding:18px max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 24px) max(16px,env(safe-area-inset-left,0px))}
+  .ava-fab{padding:6px}
+  .ava-fab > span:last-child{display:none}
+  .progress ol{margin-right:58px}
+  .way{padding:20px}
+}
+@media (min-width:761px){.progress ol{margin-right:200px}}
+@media (max-width:420px){.stats b{font-size:1.9rem}.swatch span{font-size:.64rem}}
+@media (prefers-reduced-motion: reduce){
+  .marquee .run,.scroll-hint::after{animation:none}
+  .letterbox{display:none}
+  .step,.step.on{transition:none}
+}
+</style>
+<meta property="og:title" content="Kesh Atelier · Hair & Beauty Salon in Kalispell, MT">
+<meta property="og:description" content="Precision cuts, hand-mixed color, styling and treatments. Book online or talk to Ava, our virtual receptionist.">
+<meta property="og:image" content="/hero/f080.webp">
+<meta name="theme-color" content="#171412">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2232%22 cy=%2232%22 r=%2230%22 fill=%22%23171412%22/%3E%3Ctext x=%2232%22 y=%2242%22 font-size=%2230%22 text-anchor=%22middle%22 fill=%22%23c6a165%22 font-family=%22Georgia%22%3EK%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="letterbox t" aria-hidden="true"></div>
+<div class="letterbox b" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Kesh Atelier</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services">Services</a><a href="#looks">Looks</a><a href="#process">Process</a><a href="#book">Contact</a>
+    </nav>
+    <button class="btn gold pill" type="button" data-open-book>Book Now</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO: pinned, camera pushes into the strands as you scroll -->
+  <section class="hero" id="top">
+    <div class="stage" id="heroStage">
+      <canvas id="heroFrames" aria-hidden="true"></canvas>
+      <span class="hero-load" id="heroLoad" aria-hidden="true">Loading 0%</span>
+      <div class="hero-copy" id="heroCopy">
+        <div class="wrap"><div class="inner">
+          <p class="eyebrow">Hair &amp; Beauty Salon</p>
+          <h1 class="h-xl">Hair that tells <em>your</em> story</h1>
+          <p class="sub">Precision cuts, color mixed by hand, styling for every occasion and treatments that repair the strand from inside.</p>
+          <div class="cta-row">
+            <button class="btn gold" type="button" data-open-book>Book an appointment</button>
+            <button class="btn" type="button" data-open-ava>Talk to Ava, our receptionist</button>
+          </div>
+        </div></div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">Scroll</div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="ba" id="results">
+    <div class="wrap">
+      <header class="center">
+        <p class="eyebrow">Results</p>
+        <h2 class="h-lg">Before &amp; After</h2>
+        <p class="drag">Drag to reveal the transformation<b aria-hidden="true">↔</b></p>
+      </header>
+      <div class="ba-box" id="baBox">
+        <img class="img-before" src="ba/before.webp" width="1000" height="1250" alt="Before: long brown hair, dry and frizzy, seen from behind" draggable="false">
+        <img class="img-after" src="ba/after.webp" width="1000" height="1250" alt="After: shoulder-length bob with glossy copper balayage, seen from behind" draggable="false">
+        <span class="tag before">Before</span>
+        <span class="tag after">After</span>
+        <span class="handle" aria-hidden="true"></span>
+        <input type="range" id="baRange" min="0" max="100" value="50" step="0.1" aria-label="Compare before and after">
+      </div>
+      <div class="ba-notes">
+        <span>Long, dry and frizzy · natural brown</span>
+        <span>Bob cut · copper balayage · gloss &amp; bond repair</span>
+      </div>
+      <div class="stats">
+        <div><b data-count="2400" data-suffix="+">2,400+</b><span>Clients styled</span></div>
+        <div><b data-count="12">12</b><span>Years in practice</span></div>
+        <div><b data-count="8">8</b><span>Stylists &amp; colorists</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PINNED STORY: cut → colour → style → care -->
+  <section class="story" id="services">
+    <div class="stage" id="storyStage">
+      <canvas id="storyFrames" aria-hidden="true"></canvas>
+      <div class="story-copy">
+        <div class="wrap">
+          <div class="steps">
+            <div class="step on" data-step="0">
+              <p class="eyebrow">Scene 01 · The cut</p>
+              <h2 class="h-lg">Where precision meets <em>flow</em></h2>
+              <p class="sub">We read your growth pattern, density and parting before the first section, then check every cut dry so the shape holds for weeks.</p>
+              <div class="chips"><span class="chip"><b>0°</b> blunt line</span><span class="chip"><b>45°</b> graduation</span><span class="chip"><b>90°</b> layers</span></div>
+              <ul class="mini">
+                <li><span>Signature cut &amp; finish</span><span>$95</span></li>
+                <li><span>Layers &amp; texture</span><span>$115</span></li>
+                <li><span>Men's cut &amp; beard line</span><span>$50</span></li>
+              </ul>
+            </div>
+            <div class="step" data-step="1">
+              <p class="eyebrow">Scene 02 · Color</p>
+              <h2 class="h-lg">Color mixed by <em>hand</em></h2>
+              <p class="sub">Every formula is written as level and tone and saved on your client card. Tap a shade to read its formula.</p>
+              <div class="swatches" role="group" aria-label="Shade card">
+                <button class="swatch" type="button" data-shade="30" aria-pressed="false" style="--a:#3b2219;--b:#7a4c35"><i></i><span>3.0</span></button>
+                <button class="swatch" type="button" data-shade="55" aria-pressed="false" style="--a:#7a2026;--b:#c4553f"><i></i><span>5.5</span></button>
+                <button class="swatch" type="button" data-shade="743" aria-pressed="true" style="--a:#a5532b;--b:#f2a85c"><i></i><span>7.43</span></button>
+                <button class="swatch" type="button" data-shade="626" aria-pressed="false" style="--a:#7e3c60;--b:#de8fac"><i></i><span>6.26</span></button>
+                <button class="swatch" type="button" data-shade="91" aria-pressed="false" style="--a:#8f8e94;--b:#f1ece6"><i></i><span>9.1</span></button>
+              </div>
+              <p class="picked">Formula: <b id="pickedName">7.43 Copper gold</b> · level 7, copper .4, gold .3</p>
+              <ul class="mini">
+                <li><span>Balayage</span><span>$285+</span></li>
+                <li><span>Global color</span><span>$135+</span></li>
+              </ul>
+            </div>
+            <div class="step" data-step="2">
+              <p class="eyebrow">Scene 03 · Styling</p>
+              <h2 class="h-lg">Movement that lasts all <em>night</em></h2>
+              <p class="sub">Set, pinned and finished for the light it will be photographed in, with the barrel size matched to the wave you want.</p>
+              <div class="chips"><span class="chip"><b>25 mm</b> tight curls</span><span class="chip"><b>32 mm</b> soft waves</span><span class="chip"><b>38 mm</b> loose bends</span></div>
+              <ul class="mini">
+                <li><span>Event updo</span><span>$120</span></li>
+                <li><span>Bridal hair, trial included</span><span>$350+</span></li>
+              </ul>
+            </div>
+            <div class="step" data-step="3">
+              <p class="eyebrow">Scene 04 · Treatments</p>
+              <h2 class="h-lg">Repair from <em>within</em></h2>
+              <p class="sub">Frizz settles, the cuticle closes and light starts to run along the hair.</p>
+              <div>
+                <div class="shine-row"><span>Shine</span><output id="shineOut">12%</output></div>
+                <div class="meter"><i id="shineBar"></i></div>
+              </div>
+              <ul class="mini">
+                <li><span>Keratin smoothing · 3–5 months</span><span>$325+</span></li>
+                <li><span>Bond repair</span><span>$55</span></li>
+                <li><span>Hair spa</span><span>$50</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="readout" aria-hidden="true" id="readout"></div>
+      <div class="progress" aria-hidden="true">
+        <div class="wrap"><ol>
+          <li class="on"><i></i>01 Cut</li><li><i></i>02 Color</li><li><i></i>03 Style</li><li><i></i>04 Care</li>
+        </ol></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOKBOOK: horizontal scroll -->
+  <section class="looks light" id="looks">
+    <div class="looks-stage">
+      <header class="wrap center">
+        <p class="eyebrow">Lookbook</p>
+        <h2 class="h-lg">Signature Looks</h2>
+        <p class="sub">A few of the cuts, colors and finishes clients ask for most.</p>
+      </header>
+      <div class="track" id="track">
+        <figure class="look"><canvas data-look="0"></canvas><figcaption><small>Color</small><strong>Copper Balayage</strong><span>7.43 painted mid-length to ends</span></figcaption></figure>
+        <figure class="look"><canvas data-look="1"></canvas><figcaption><small>Cut</small><strong>Glass Bob</strong><span>0° blunt line, keratin finish</span></figcaption></figure>
+        <figure class="look"><canvas data-look="2"></canvas><figcaption><small>Bridal</small><strong>Soft Bridal Waves</strong><span>Set with a 32 mm iron</span></figcaption></figure>
+        <figure class="look"><canvas data-look="3"></canvas><figcaption><small>Curls</small><strong>Defined Spirals</strong><span>Cut curly, dried with a diffuser</span></figcaption></figure>
+        <figure class="look"><canvas data-look="4"></canvas><figcaption><small>Color</small><strong>Ice Ash Lob</strong><span>9.1 toner over pre-lightened ends</span></figcaption></figure>
+        <figure class="look"><canvas data-look="5"></canvas><figcaption><small>Cut &amp; color</small><strong>Mahogany Layers</strong><span>5.5 gloss with 90° layers</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <header class="center">
+        <p class="eyebrow">How a visit works</p>
+        <h2 class="h-lg">The Process</h2>
+      </header>
+      <ol class="proc">
+        <li><span class="n">01</span><h3>Consultation</h3><p>We look at your hair in daylight, check porosity and ask how you style it at home.</p><span class="t">15 min · free</span></li>
+        <li><span class="n">02</span><h3>Strand test</h3><p>For color, a skin patch test 48 hours ahead and a test on one strand.</p><span class="t">Color clients only</span></li>
+        <li><span class="n">03</span><h3>The service</h3><p>Cut, color, styling or treatment, with your formula saved on your client card.</p><span class="t">45–210 min</span></li>
+        <li><span class="n">04</span><h3>Finish &amp; aftercare</h3><p>A finish you can repeat at home and a written note on products and timing.</p><span class="t">Every visit</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SERVICE MENU -->
+  <section class="menu-sec light" id="menu">
+    <div class="wrap">
+      <header class="center">
+        <p class="eyebrow">Prices</p>
+        <h2 class="h-lg">Service Menu</h2>
+      </header>
+      <div class="menu-grid">
+        <div><h3>Cut</h3><ul>
+          <li>Signature cut &amp; finish<b>$95</b><small>60 min</small></li>
+          <li>Layers &amp; texture<b>$115</b><small>75 min</small></li>
+          <li>Bang trim<b>$20</b><small>15 min</small></li>
+          <li>Men's cut &amp; beard line<b>$50</b><small>40 min</small></li>
+          <li>Kids, under 10<b>$35</b><small>30 min</small></li>
+        </ul></div>
+        <div><h3>Color</h3><ul>
+          <li>Global color<b>$135+</b><small>120 min</small></li>
+          <li>Balayage<b>$285+</b><small>210 min</small></li>
+          <li>Root touch-up<b>$95</b><small>75 min</small></li>
+          <li>Highlights<b>$220+</b><small>180 min</small></li>
+          <li>Gloss &amp; toner<b>$65</b><small>45 min</small></li>
+        </ul></div>
+        <div><h3>Styling</h3><ul>
+          <li>Blowout &amp; finish<b>$60</b><small>45 min</small></li>
+          <li>Curls or soft waves<b>$75</b><small>60 min</small></li>
+          <li>Event updo<b>$120</b><small>75 min</small></li>
+          <li>Bridal hair<b>$350+</b><small>Trial + day</small></li>
+        </ul></div>
+        <div><h3>Treatments</h3><ul>
+          <li>Keratin smoothing<b>$325+</b><small>150 min</small></li>
+          <li>Bond repair<b>$55</b><small>45 min</small></li>
+          <li>Scalp ritual<b>$65</b><small>50 min</small></li>
+          <li>Hair spa<b>$50</b><small>60 min</small></li>
+        </ul></div>
+      </div>
+      <p class="menu-note">Color and keratin prices depend on hair length and density and are confirmed at your consultation. Prices exclude sales tax and gratuity.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS (template: replace with real client reviews) -->
+  <section class="reviews light" id="reviews">
+    <div class="wrap">
+      <header class="center">
+        <p class="eyebrow">Testimonials</p>
+        <h2 class="h-lg">Client Words</h2>
+        <p class="sub">Review slots, ready for three real reviews from your Google profile.</p>
+      </header>
+      <div class="rev">
+        <article><div class="stars" aria-hidden="true"></div><blockquote>Paste a real client review here, with their permission.</blockquote><cite><b>Client name</b>Service received</cite></article>
+        <article><div class="stars" aria-hidden="true"></div><blockquote>Paste a real client review here, with their permission.</blockquote><cite><b>Client name</b>Service received</cite></article>
+        <article><div class="stars" aria-hidden="true"></div><blockquote>Paste a real client review here, with their permission.</blockquote><cite><b>Client name</b>Service received</cite></article>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="run">
+      <span>Precision cut</span><span>Color is emotion</span><span>Great hair changes how you feel</span><span>Every strand, directed</span>
+      <span>Precision cut</span><span>Color is emotion</span><span>Great hair changes how you feel</span><span>Every strand, directed</span>
+    </div>
+  </div>
+
+  <!-- CTA + BOOKING -->
+  <section class="cta" id="book">
+    <div class="wrap">
+      <header class="center">
+        <h2 class="h-lg">Ready for your <em>new</em> look?</h2>
+        <p class="sub">Book online in about a minute, or talk it through with Ava, our virtual receptionist. Your first 15-minute consultation is free.</p>
+      </header>
+      <div class="book">
+        <div class="ways">
+          <button class="way" type="button" data-open-book>
+            <span class="eyebrow">Online</span>
+            <strong>Book an appointment</strong>
+            <span class="d">Choose a service, stylist and time. We confirm by text.</span>
+            <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </button>
+          <button class="way" type="button" data-open-ava>
+            <span class="eyebrow">By voice</span>
+            <strong>Talk to Ava</strong>
+            <span class="d">Ask about services and prices, and she'll book you in while you talk.</span>
+            <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+          </button>
+        </div>
+        <aside class="contact" aria-label="Visit and contact">
+          <div><h3>Find us</h3><p>Suite 600, 1001 South Main Street<br>Kalispell, Montana 59901</p></div>
+          <div><h3>Hours</h3><dl class="hours"><dt>Tue–Fri</dt><dd>10:00 AM – 7:00 PM</dd><dt>Saturday</dt><dd>9:00 AM – 6:00 PM</dd><dt>Sunday</dt><dd>10:00 AM – 4:00 PM</dd><dt>Monday</dt><dd>Closed</dd></dl></div>
+          <div><h3>Call or text</h3><div class="phone"><span id="phoneNo">+1 (406) 555-0147</span><button class="btn" type="button" id="copyPhone">Copy</button></div></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- BOOKING POPUP -->
+<dialog class="modal" id="bookDialog" aria-labelledby="bookTitle">
+  <div class="modal-head">
+    <div>
+      <p class="eyebrow">Kesh Atelier · Kalispell, MT</p>
+      <h2 id="bookTitle">Book an appointment</h2>
+      <p class="sub">We'll text you to confirm within business hours.</p>
+    </div>
+    <button class="x" type="button" data-close-book aria-label="Close">&times;</button>
+  </div>
+  <div class="modal-body">
+    <form id="bookForm" novalidate>
+      <div class="field wide"><label for="svc">Service</label><select id="svc" name="service" required></select></div>
+      <div class="field wide"><label for="stylist">Stylist</label><select id="stylist" name="stylist"></select></div>
+      <div class="field"><label for="date">Date</label><input id="date" name="date" type="date" required></div>
+      <div class="field"><label for="time">Time</label><select id="time" name="time" required></select></div>
+      <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required placeholder="First and last name"></div>
+      <div class="field"><label for="phone">Mobile phone</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(406) 555-0123"></div>
+      <div class="field wide"><label for="email">Email <small>(optional)</small></label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+      <div class="field wide"><label for="notes">Notes <small>(optional)</small></label><textarea id="notes" name="notes" placeholder="Hair length, the look you want, or anything we should know"></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="company">Company</label><input id="company" name="company" tabindex="-1" autocomplete="off"></div>
+      <p class="form-err" id="formErr" role="alert" hidden></p>
+      <div class="form-actions">
+        <button class="btn gold" type="submit" id="bookSubmit">Request appointment</button>
+        <button class="linkish" type="button" data-open-ava>Prefer to talk? Ask Ava</button>
+      </div>
+    </form>
+    <div class="done" id="bookDone" hidden role="status">
+      <p class="eyebrow">Request received</p>
+      <h3>See you soon, <span id="doneName"></span>.</h3>
+      <dl id="doneList"></dl>
+      <p class="sub">Your reference is <span class="ref" id="doneRef"></span>. We'll text you to confirm. Need to change it? Call or text +1 (406) 555-0147.</p>
+      <div class="form-actions"><button class="btn gold" type="button" data-close-book>Done</button></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- AVA, VIRTUAL RECEPTIONIST -->
+<button class="ava-fab" id="avaFab" type="button" data-open-ava aria-label="Talk to Ava, our virtual receptionist">
+  <span class="orb" aria-hidden="true"></span>
+  <span><b>Talk to Ava</b><small>Virtual receptionist</small></span>
+</button>
+<section class="ava" id="ava" hidden aria-labelledby="avaTitle">
+  <div class="ava-head">
+    <span class="orb" id="avaOrb" aria-hidden="true"></span>
+    <div><h2 id="avaTitle">Ava</h2><p class="ava-status" id="avaStatus" aria-live="polite">Virtual receptionist</p></div>
+    <button class="x" type="button" id="avaClose" aria-label="End the call and close">&times;</button>
+  </div>
+  <div class="ava-log" id="avaLog"></div>
+  <div class="ava-card" id="avaCard" hidden><h3>Your booking so far</h3><dl id="avaCardList"></dl></div>
+  <div class="ava-foot">
+    <button class="btn" type="button" id="avaMute" disabled>Mute mic</button>
+    <button class="btn gold" type="button" id="avaEnd">End call</button>
+  </div>
+  <p class="ava-note">Ava is an AI receptionist. Your call is transcribed so she can book your appointment.</p>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a class="brand" href="#top">Kesh Atelier</a><p>Hair &amp; beauty salon for cuts, color, styling and treatments.</p></div>
+      <div><h4>Services</h4><ul><li><a href="#services">Cut</a></li><li><a href="#services">Color</a></li><li><a href="#services">Styling</a></li><li><a href="#menu">Treatments</a></li></ul></div>
+      <div><h4>Studio</h4><ul><li><a href="#looks">Lookbook</a></li><li><a href="#process">Process</a></li><li><a href="#menu">Prices</a></li></ul></div>
+      <div><h4>Visit</h4><ul><li>1001 South Main Street, Suite 600</li><li>Kalispell, MT 59901</li><li><button class="linkish" type="button" data-open-book>Book now</button></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Kesh Atelier</span><span>Cut · Color · Style · Care</span></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const $ = (s, el=document) => el.querySelector(s);
+  const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+  if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
+  const clamp = (v, a=0, b=1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = p => p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;
+  const pad = n => String(n).padStart(2, '0');
+  const isNarrow = () => innerWidth < 760;
+
+  const SHADES = {
+    '30':  {code:'3.0',  name:'Espresso brown', note:'level 3, natural .0', a:'#3b2219', b:'#7a4c35'},
+    '55':  {code:'5.5',  name:'Mahogany',       note:'level 5, mahogany .5', a:'#7a2026', b:'#c4553f'},
+    '743': {code:'7.43', name:'Copper gold',    note:'level 7, copper .4, gold .3', a:'#a5532b', b:'#f2a85c'},
+    '626': {code:'6.26', name:'Rose mauve',     note:'level 6, violet .2, red .6', a:'#7e3c60', b:'#de8fac'},
+    '91':  {code:'9.1',  name:'Ice ash blonde', note:'level 9, ash .1', a:'#8f8e94', b:'#f1ece6'}
+  };
+  let shade = '743';
+  const PATTERNS = {
+    straight:{curl:0.0, freq:1.2, label:'Sleek'},
+    waves:   {curl:0.55,freq:1.5, label:'Waves'},
+    curls:   {curl:1.0, freq:3.4, label:'Curls'},
+    coils:   {curl:0.75,freq:6.5, label:'Spirals'}
+  };
+  let pattern = 'waves';
+  const P = {curl:.55, freq:1.5};
+
+  /* ================= WebGL stage ================= */
+  const canvas = $('#stage');
+  let renderer = null;
+  try { if (typeof THREE !== 'undefined') renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, powerPreference:'high-performance'}); }
+  catch(e){ renderer = null; }
+  if (!renderer) document.documentElement.classList.add('no-gl');
+
+  let scene, camera, group, hairMat, sparkMat, bladeMat, blade, hU;
+  const small = innerWidth < 760;
+  const C = c => renderer ? new THREE.Color(c) : null;
+
+  if (renderer) {
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+    renderer.autoClear = false;
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(35, 1, .1, 50);
+    group = new THREE.Group(); scene.add(group);
+
+    const N = small ? 1500 : 3000, SEG = 56, vc = N*(SEG-1)*2;
+    const pos = new Float32Array(vc*3), aT = new Float32Array(vc), aR = new Float32Array(vc*4);
+    let k = 0;
+    for (let i = 0; i < N; i++) {
+      const u = Math.random()*2 - 1;
+      const rx = Math.sign(u)*Math.pow(Math.abs(u), .85)*1.7;
+      const rz = (Math.random() - .5)*.55;
+      const ry = 1.75 - .2*rx*rx + (Math.random() - .5)*.05;
+      const r = [Math.random(), Math.random(), Math.random(), Math.random()];
+      for (let j = 0; j < SEG-1; j++) for (let e = 0; e < 2; e++) {
+        pos[k*3]=rx; pos[k*3+1]=ry; pos[k*3+2]=rz; aT[k]=(j+e)/(SEG-1);
+        aR[k*4]=r[0]; aR[k*4+1]=r[1]; aR[k*4+2]=r[2]; aR[k*4+3]=r[3]; k++;
+      }
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setAttribute('aT', new THREE.BufferAttribute(aT, 1));
+    g.setAttribute('aRnd', new THREE.BufferAttribute(aR, 4));
+    hairMat = new THREE.ShaderMaterial({
+      transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+      uniforms:{uTime:{value:0},uCut:{value:4},uLenMax:{value:3.9},uCurl:{value:0},uFreq:{value:1.5},uWave:{value:1},uDye:{value:0},uGloss:{value:0},uFrizz:{value:1},uAlpha:{value:.2},
+        uWind:{value:new THREE.Vector2()},uNatA:{value:C('#5a3424')},uNatB:{value:C('#b8845a')},uDyeA:{value:C(SHADES[shade].a)},uDyeB:{value:C(SHADES[shade].b)}},
+      vertexShader:`
+        uniform float uTime,uCut,uLenMax,uCurl,uFreq,uWave,uDye,uGloss,uFrizz;
+        uniform vec2 uWind; uniform vec3 uNatA,uNatB,uDyeA,uDyeB;
+        attribute float aT; attribute vec4 aRnd;
+        varying vec3 vCol; varying float vA;
+        void main(){
+          float L=min(uLenMax*(0.78+0.22*aRnd.x),uCut*(0.985+0.03*aRnd.y));
+          float s=aT*L; float ph=aRnd.z*6.2831853; vec3 p=position;
+          p.y-=s*(1.0-uCurl*0.2); p.x+=position.x*0.09*s;
+          float sw=s*s*0.06*uWave;
+          p.x+=sin(s*1.4-uTime*0.8+ph+position.x)*sw; p.z+=cos(s*1.1-uTime*0.6+ph)*sw*0.8;
+          float amp=uCurl*0.1*smoothstep(0.05,0.7,s); float ang=s*uFreq*3.14159+ph+uTime*0.15;
+          p.x+=cos(ang)*amp; p.z+=sin(ang)*amp;
+          float fz=uFrizz*0.02*smoothstep(0.3,1.0,aT);
+          p.x+=sin(aT*53.0+aRnd.w*91.0)*fz; p.y+=sin(aT*31.0+aRnd.z*57.0)*fz*0.6; p.z+=cos(aT*47.0+aRnd.x*77.0)*fz;
+          p.x+=uWind.x*s*s*0.12; p.z+=uWind.y*s*s*0.08;
+          vec3 nat=mix(uNatA,uNatB,aT); float edge=uDye*1.15;
+          float dyed=1.0-smoothstep(edge-0.1,edge,aT);
+          vec3 c=mix(nat,mix(uDyeA,uDyeB,aT),dyed);
+          float band=0.32+0.12*sin(uTime*0.5+position.x*1.7);
+          c+=vec3(1.0,0.9,0.8)*exp(-pow((aT-band)*6.0,2.0))*(0.1+0.6*uGloss);
+          c*=0.85+0.35*uGloss;
+          vCol=c; vA=(0.55+0.45*aRnd.y)*(1.0-smoothstep(0.82,1.0,aT)*0.85);
+          gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0);
+        }`,
+      fragmentShader:`uniform float uAlpha; varying vec3 vCol; varying float vA; void main(){ gl_FragColor=vec4(vCol,vA*uAlpha); }`
+    });
+    hU = hairMat.uniforms;
+    const hair = new THREE.LineSegments(g, hairMat); hair.frustumCulled = false; group.add(hair);
+
+    const M = small ? 260 : 500, sp = new Float32Array(M*3), ss = new Float32Array(M);
+    for (let i = 0; i < M; i++){ sp[i*3]=(Math.random()-.5)*4.4; sp[i*3+1]=1.9-Math.random()*3.4; sp[i*3+2]=(Math.random()-.5)*1.4; ss[i]=Math.random(); }
+    const sg = new THREE.BufferGeometry();
+    sg.setAttribute('position', new THREE.BufferAttribute(sp, 3)); sg.setAttribute('aS', new THREE.BufferAttribute(ss, 1));
+    sparkMat = new THREE.ShaderMaterial({
+      transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+      uniforms:{uTime:{value:0}, uGloss:{value:0}, uPR:{value:renderer.getPixelRatio()}},
+      vertexShader:`uniform float uTime,uGloss,uPR; attribute float aS; varying float vA;
+        void main(){ vec3 p=position; p.y+=sin(uTime*0.4+aS*20.0)*0.06; p.x+=cos(uTime*0.3+aS*12.0)*0.04;
+          vec4 mv=modelViewMatrix*vec4(p,1.0); float tw=0.5+0.5*sin(uTime*(1.4+aS*2.2)+aS*40.0);
+          vA=tw*(0.04+0.85*uGloss); gl_PointSize=(2.0+aS*6.0)*uPR*(3.2/-mv.z); gl_Position=projectionMatrix*mv; }`,
+      fragmentShader:`varying float vA; void main(){ float r=length(gl_PointCoord-0.5); float a=smoothstep(0.5,0.0,r); a*=a; gl_FragColor=vec4(1.0,0.9,0.76,a*vA); }`
+    });
+    const sparks = new THREE.Points(sg, sparkMat); sparks.frustumCulled = false; group.add(sparks);
+
+    bladeMat = new THREE.ShaderMaterial({
+      transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, uniforms:{uO:{value:0}},
+      vertexShader:`varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+      fragmentShader:`uniform float uO; varying vec2 vUv; void main(){ float y=vUv.y-0.5;
+        float a=exp(-pow(y*70.0,2.0))+0.35*exp(-pow(y*9.0,2.0)); a*=smoothstep(0.0,0.2,vUv.x)*smoothstep(1.0,0.8,vUv.x);
+        gl_FragColor=vec4(0.98,0.86,0.68,a*uO); }`
+    });
+    blade = new THREE.Mesh(new THREE.PlaneGeometry(4.8, .3), bladeMat); blade.position.z = .4; group.add(blade);
+  }
+
+  const NAT  = {a:C('#5a3424'), b:C('#b8845a')};
+  const DULL = {a:C('#3a302b'), b:C('#7a6b60')};
+  const dyeTarget = {a:C(SHADES[shade].a), b:C(SHADES[shade].b)};
+  const dyeNow    = {a:C(SHADES[shade].a), b:C(SHADES[shade].b)};
+  const baseAlpha = small ? .3 : .2;
+
+  function resize(){ if (renderer) renderer.setSize(innerWidth, innerHeight, false); sizeFrames(); sizeStory(); layoutLooks(); drawLooks(); }
+
+  /* pointer → wind */
+  const mouse = {x:0, y:0}, wind = {x:0, y:0};
+  addEventListener('pointermove', e => { mouse.x = (e.clientX/innerWidth)*2 - 1; mouse.y = (e.clientY/innerHeight)*2 - 1; }, {passive:true});
+
+  /* apply a shot state and render it into a screen rect, clipped */
+  function shot(st, rect, clip, clearColor){
+    if (!renderer || clip.w <= 1 || clip.h <= 1) return;
+    const vh = innerHeight;
+    renderer.setViewport(rect.x, vh - rect.y - rect.h, rect.w, rect.h);
+    renderer.setScissor(clip.x, vh - clip.y - clip.h, clip.w, clip.h);
+    if (clearColor) { renderer.setClearColor(clearColor, 1); renderer.clear(true, false, false); }
+    camera.aspect = rect.w / rect.h; camera.updateProjectionMatrix();
+    hU.uCut.value = st.cut; hU.uDye.value = st.dye; hU.uGloss.value = st.gloss; hU.uFrizz.value = st.frizz;
+    hU.uCurl.value = st.curl; hU.uFreq.value = st.freq; hU.uWave.value = st.wave ?? 1;
+    hU.uAlpha.value = baseAlpha * (st.alpha ?? 1);
+    hU.uNatA.value.copy(st.nat.a); hU.uNatB.value.copy(st.nat.b);
+    hU.uDyeA.value.copy(dyeNow.a); hU.uDyeB.value.copy(dyeNow.b);
+    sparkMat.uniforms.uGloss.value = st.gloss * (st.alpha ?? 1);
+    bladeMat.uniforms.uO.value = st.blade || 0;
+    blade.position.y = 1.72 - st.cut;
+    group.position.set(st.x, st.y || 0, 0);
+    group.rotation.y = st.rotY + wind.x * .06;
+    group.scale.setScalar(st.scale || 1);
+    camera.position.set(0, reduce ? 0 : -mouse.y * .1, st.camZ);
+    camera.lookAt(0, .1, 0);
+    renderer.render(scene, camera);
+  }
+  const clipOf = r => { const x0 = Math.max(0, r.left), x1 = Math.min(innerWidth, r.right), y0 = Math.max(0, r.top), y1 = Math.min(innerHeight, r.bottom);
+    return {x:x0, y:y0, w:Math.max(0, x1-x0), h:Math.max(0, y1-y0)}; };
+  const rectOf = r => ({x:r.left, y:r.top, w:r.width, h:r.height});
+
+  /* ================= HERO: scroll-scrubbed video frames ================= */
+  const hero = $('.hero'), heroStage = $('#heroStage'), heroCopy = $('#heroCopy');
+  let lastHeroOp = -1;
+  const FRAMES = 120, fCv = $('#heroFrames'), fCtx = fCv.getContext('2d'), heroLoad = $('#heroLoad');
+  const imgs = new Array(FRAMES);
+  let loadedN = 0, heroF = 0, lastKey = '';
+  const frameSrc = i => `hero/f${String(i + 1).padStart(3, '0')}.webp`;
+  // coarse-to-fine order: first frame, then every 16th, 8th, 4th, 2nd, rest
+  const order = [0]; [16, 8, 4, 2, 1].forEach(st => { for (let i = 0; i < FRAMES; i += st) if (!order.includes(i)) order.push(i); });
+  let qi = 0;
+  function pump(){
+    if (qi >= order.length) return;
+    const i = order[qi++], im = new Image();
+    im.decoding = 'async';
+    im.onload = () => { imgs[i] = im; done(); };
+    im.onerror = done;
+    im.src = frameSrc(i);
+    function done(){
+      loadedN++; lastKey = '';
+      const pct = Math.round(loadedN / FRAMES * 100);
+      heroLoad.textContent = `Loading ${pct}%`;
+      if (loadedN >= FRAMES) heroLoad.classList.add('done');
+      pump();
+    }
+  }
+  for (let c = 0; c < 6; c++) pump();
+  function nearest(i){
+    if (imgs[i]) return i;
+    for (let d = 1; d < FRAMES; d++) { if (imgs[i - d]) return i - d; if (imgs[i + d]) return i + d; }
+    return -1;
+  }
+  function sizeFrames(){
+    const r = fCv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    fCv.width = Math.max(1, Math.round(r.width * dpr)); fCv.height = Math.max(1, Math.round(r.height * dpr)); lastKey = '';
+  }
+  function cover(im, alpha){
+    const W = fCv.width, H = fCv.height, iw = im.naturalWidth, ih = im.naturalHeight;
+    const s = Math.max(W / iw, H / ih), dw = iw * s, dh = ih * s;
+    const fx = isNarrow() ? .62 : .5;   // on phones keep the counter and dryer in frame
+    fCtx.globalAlpha = alpha; fCtx.drawImage(im, (W - dw) * fx, (H - dh) * .5, dw, dh);
+  }
+  function drawHero(f){
+    const i = Math.floor(f), t = f - i;
+    const a = nearest(i), b = nearest(Math.min(FRAMES - 1, i + 1));
+    if (a < 0) return;
+    const key = a + ':' + b + ':' + t.toFixed(2) + ':' + fCv.width;
+    if (key === lastKey) return; lastKey = key;
+    cover(imgs[a], 1);
+    if (b !== a && b >= 0 && t > .01) cover(imgs[b], t);   // cross-fade between neighbours for smooth scrub
+    fCtx.globalAlpha = 1;
+  }
+
+  /* ================= BEFORE / AFTER ================= */
+  const baBox = $('#baBox'), baRange = $('#baRange');
+  const ba = {v:50};
+  let baTouched = false, baSwept = false;
+  baRange.addEventListener('input', () => { baTouched = true; if (hasGSAP) gsap.killTweensOf(ba); ba.v = +baRange.value; });
+  const BEFORE = {cut:4, dye:0, gloss:0, frizz:2.4, curl:0, freq:1.2, wave:.5, nat:DULL, x:0, y:0, rotY:0, camZ:4.5, alpha:.85, scale:.95};
+  function afterState(){ return {cut:2.05, dye:1, gloss:1, frizz:0, curl:P.curl, freq:P.freq, wave:1, nat:NAT, x:0, y:0, rotY:0, camZ:4.5, alpha:1, scale:.95}; }
+  const BEFORE_BG = renderer ? new THREE.Color('#25221f') : null, AFTER_BG = renderer ? new THREE.Color('#2b1c15') : null;
+
+  /* ================= STORY ================= */
+  const story = $('.story'), storyStage = $('#storyStage');
+  const steps = $$('.step'), progLis = $$('.progress li');
+  const ARR    = {cut:4,    dye:0, gloss:.15, frizz:1,  style:.3, rotY:-.1};
+  const SCENES = [
+    ARR,
+    {cut:2.05, dye:0, gloss:.15, frizz:1,  style:0, rotY:.22},   // cut
+    {cut:2.05, dye:1, gloss:.3,  frizz:.7, style:0, rotY:-.14},  // colour
+    {cut:2.05, dye:1, gloss:.4,  frizz:.5, style:1, rotY:.16},   // style
+    {cut:2.05, dye:1, gloss:1,   frizz:0,  style:1, rotY:-.12}   // care
+  ];
+  const SK = Object.keys(ARR);
+  const ST = Object.assign({blade:0}, ARR), SS = Object.assign({blade:0}, ARR);
+  let stepNow = 0;
+  function storyTarget(p){
+    const idx = Math.min(3, Math.floor(p*4)), local = p*4 - idx, t = clamp(local/.45), e = ease(t);
+    const a = SCENES[idx], b = SCENES[idx+1];
+    SK.forEach(k => ST[k] = lerp(a[k], b[k], e));
+    ST.blade = idx === 0 ? Math.sin(t*Math.PI) : 0;
+    if (idx !== stepNow) {
+      stepNow = idx;
+      steps.forEach((s, i) => s.classList.toggle('on', i === idx));
+      progLis.forEach((l, i) => l.classList.toggle('on', i === idx));
+    }
+    progLis.forEach((l, i) => l.style.setProperty('--f', clamp(p*4 - i).toFixed(3)));
+  }
+  const readout = $('#readout'), shineOut = $('#shineOut'), shineBar = $('#shineBar');
+  let lastRO = '', lastShine = -1;
+  function storyHud(){
+    const len = Math.round(Math.min(SS.cut, 3.9)/3.9*60);
+    const tone = SS.dye < .04 ? 'Natural 6.3' : (SS.dye > .96 ? SHADES[shade].code + ' ' + SHADES[shade].name : `${SHADES[shade].code} · ${Math.round(SS.dye*100)}%`);
+    const pat = SS.style < .1 ? 'Natural fall' : PATTERNS[pattern].label;
+    const shine = Math.round(12 + SS.gloss*86);
+    const ro = `Length <b>${len} cm</b><br>Tone <b>${tone}</b><br>Pattern <b>${pat}</b><br>Shine <b>${shine}%</b>`;
+    if (ro !== lastRO) { readout.innerHTML = ro; lastRO = ro; }
+    if (shine !== lastShine) { shineOut.textContent = shine + '%'; shineBar.style.width = shine + '%'; lastShine = shine; }
+  }
+
+  /* ================= STORY: scroll-scrubbed service clips ================= */
+  const storyCv = $('#storyFrames'), sCtx = storyCv.getContext('2d');
+  function Seq(dir, count){ this.dir = dir; this.count = count; this.imgs = new Array(count); this.started = false; }
+  Seq.prototype.start = function(){
+    if (this.started) return; this.started = true;
+    const order = [0]; [8, 4, 2, 1].forEach(st => { for (let i = 0; i < this.count; i += st) if (!order.includes(i)) order.push(i); });
+    let q = 0;
+    const next = () => {
+      if (q >= order.length) return;
+      const i = order[q++], im = new Image(); im.decoding = 'async';
+      im.onload = () => { this.imgs[i] = im; storyKey = ''; next(); };
+      im.onerror = next;
+      im.src = `${this.dir}/f${String(i + 1).padStart(3, '0')}.webp`;
+    };
+    for (let c = 0; c < 4; c++) next();
+  };
+  Seq.prototype.near = function(i){
+    i = Math.max(0, Math.min(this.count - 1, i));
+    if (this.imgs[i]) return this.imgs[i];
+    for (let d = 1; d < this.count; d++) { if (this.imgs[i - d]) return this.imgs[i - d]; if (this.imgs[i + d]) return this.imgs[i + d]; }
+    return null;
+  };
+  // one slot per scene: Cut, Colour, Style, Care. null keeps the 3D strands until a clip is supplied.
+  const CLIPS = [new Seq('svc/cut', 64), new Seq('svc/colour', 64), new Seq('svc/style', 63), new Seq('svc/care', 63)];
+  const clipA = [0, 0, 0, 0], sF = [0, 0, 0, 0];
+  let storyKey = '', clipsStarted = false;
+  function sizeStory(){
+    const r = storyCv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    storyCv.width = Math.max(1, Math.round(r.width * dpr)); storyCv.height = Math.max(1, Math.round(r.height * dpr)); storyKey = '';
+  }
+  function coverOn(ctx, cv, im, alpha, fx){
+    const W = cv.width, H = cv.height, iw = im.naturalWidth, ih = im.naturalHeight;
+    const s = Math.max(W / iw, H / ih), dw = iw * s, dh = ih * s;
+    ctx.globalAlpha = alpha; ctx.drawImage(im, (W - dw) * fx, (H - dh) * .5, dw, dh);
+  }
+  function drawStory(spg, dt){
+    let key = storyCv.width + ':';
+    for (let s = 0; s < 4; s++) {
+      const c = CLIPS[s]; if (!c) continue;
+      const tgt = clamp(spg * 4 - s) * (c.count - 1);
+      sF[s] += (tgt - sF[s]) * (reduce ? 1 : 1 - Math.pow(.0008, dt));
+      if (Math.abs(tgt - sF[s]) < .002) sF[s] = tgt;
+      key += s + ':' + sF[s].toFixed(2) + ':' + clipA[s].toFixed(3) + '|';
+    }
+    if (key === storyKey) return; storyKey = key;
+    sCtx.globalAlpha = 1; sCtx.clearRect(0, 0, storyCv.width, storyCv.height);
+    const fx = isNarrow() ? .66 : .5;
+    for (let s = 0; s < 4; s++) {
+      const c = CLIPS[s]; if (!c || clipA[s] < .005) continue;
+      const i = Math.floor(sF[s]), t = sF[s] - i, a = c.near(i), b = c.near(i + 1);
+      if (!a) continue;
+      coverOn(sCtx, storyCv, a, clipA[s], fx);
+      if (b && b !== a && t > .01) coverOn(sCtx, storyCv, b, clipA[s] * t, fx);
+    }
+    sCtx.globalAlpha = 1;
+  }
+
+  /* ================= LOOKBOOK ================= */
+  const looks = $('#looks'), track = $('#track');
+  let looksDist = 0;
+  function layoutLooks(){
+    if (isNarrow()) { looks.style.height = ''; track.style.transform = ''; looksDist = 0; return; }
+    looksDist = Math.max(0, track.scrollWidth - innerWidth);
+    looks.style.height = (innerHeight + looksDist) + 'px';
+  }
+  const LOOKS = [
+    {a:'#5a3424', b:'#f2a85c', mid:.35, len:.95, curl:.5,  freq:1.6, glow:'rgba(242,168,92,.30)', seed:3},
+    {a:'#2c1b14', b:'#6e4a36', mid:0,   len:.5,  curl:0,   freq:1,   glow:'rgba(232,205,164,.22)', seed:7, blunt:true},
+    {a:'#3b2219', b:'#b07a50', mid:0,   len:.9,  curl:.9,  freq:2.2, glow:'rgba(214,170,120,.26)', seed:11},
+    {a:'#22150f', b:'#7a4c35', mid:0,   len:.75, curl:.8,  freq:6,   glow:'rgba(180,120,80,.24)', seed:13},
+    {a:'#6e6a6a', b:'#f1ece6', mid:.2,  len:.6,  curl:.35, freq:1.4, glow:'rgba(235,230,225,.22)', seed:17},
+    {a:'#5a1a1e', b:'#c4553f', mid:0,   len:.85, curl:.25, freq:1.2, glow:'rgba(196,85,63,.28)', seed:19, layered:true}
+  ];
+  function rng(seed){ return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function drawLook(cv, L){
+    const r = cv.getBoundingClientRect(); if (r.width < 4) return;
+    const dpr = Math.min(devicePixelRatio || 1, 2), W = Math.round(r.width*dpr), H = Math.round(r.height*dpr);
+    if (cv.width === W && cv.height === H && cv.dataset.done) return;
+    cv.width = W; cv.height = H; cv.dataset.done = 1;
+    const c = cv.getContext('2d'), rand = rng(L.seed);
+    const bg = c.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#2b231e'); bg.addColorStop(1, '#120f0d');
+    c.fillStyle = bg; c.fillRect(0, 0, W, H);
+    const gl = c.createRadialGradient(W*.5, H*.38, 0, W*.5, H*.38, W*.85); gl.addColorStop(0, L.glow); gl.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = gl; c.fillRect(0, 0, W, H);
+    c.globalCompositeOperation = 'lighter'; c.lineWidth = Math.max(1, dpr*.7);
+    const n = 460;
+    for (let i = 0; i < n; i++) {
+      const u = rand()*2 - 1, rx = W*.5 + u*W*.38, y0 = H*.04 + Math.abs(u)*u*0 + u*u*H*.06 - H*.02;
+      let len = H*L.len*(L.blunt ? 1 : (.8 + .2*rand()));
+      if (L.layered) len *= .55 + .45*rand();
+      const ph = rand()*6.283, gr = c.createLinearGradient(0, y0, 0, y0 + len);
+      gr.addColorStop(0, L.a); if (L.mid) gr.addColorStop(L.mid, L.a); gr.addColorStop(1, L.b);
+      c.strokeStyle = gr; c.globalAlpha = .08 + .1*rand();
+      c.beginPath();
+      for (let k = 0; k <= 48; k++) {
+        const t = k/48, s = t*len;
+        const x = rx + u*W*.08*t + Math.cos(s/H*L.freq*Math.PI*2 + ph)*L.curl*W*.05*Math.min(1, t*2.2);
+        const y = y0 + s*(1 - L.curl*.12);
+        k ? c.lineTo(x, y) : c.moveTo(x, y);
+      }
+      c.stroke();
+    }
+    c.globalCompositeOperation = 'source-over'; c.globalAlpha = 1;
+    const sh = c.createLinearGradient(0, 0, 0, H); sh.addColorStop(0, 'rgba(255,240,220,0)'); sh.addColorStop(.36, 'rgba(255,240,220,.07)'); sh.addColorStop(.46, 'rgba(255,240,220,0)');
+    c.fillStyle = sh; c.fillRect(0, 0, W, H);
+  }
+  function drawLooks(){ $$('[data-look]').forEach(cv => drawLook(cv, LOOKS[+cv.dataset.look])); }
+
+  /* ================= frame loop ================= */
+  let clock = 0, last = performance.now();
+  function frame(now){
+    const dt = Math.min(.05, (now - last)/1000); last = now;
+    clock += dt * (reduce ? .35 : 1);
+    const vh = innerHeight;
+
+    // hero progress + copy fade
+    const hr = hero.getBoundingClientRect();
+    const hp = clamp(-hr.top / Math.max(1, hr.height - vh));
+    const op = +(1 - clamp((hp - .5)/.35)).toFixed(3);
+    if (op !== lastHeroOp) {
+      heroCopy.style.opacity = op;
+      heroCopy.style.transform = `translateY(${(-hp*60).toFixed(1)}px)`;
+      lastHeroOp = op;
+    }
+    if (hr.bottom > 0 && hr.top < vh) {
+      const target = hp * (FRAMES - 1);
+      heroF += (target - heroF) * (reduce ? 1 : 1 - Math.pow(.0008, dt));
+      if (Math.abs(target - heroF) < .002) heroF = target;
+      drawHero(heroF);
+    }
+
+    // story
+    const sr = story.getBoundingClientRect();
+    const spg = clamp(-sr.top / Math.max(1, sr.height - vh));
+    storyTarget(spg);
+    if (!clipsStarted && (loadedN >= FRAMES || sr.top < vh * 2.5)) { clipsStarted = true; CLIPS.forEach(c => c && c.start()); }
+    const sIdx = Math.min(3, Math.floor(spg * 4));
+    let vidCover = 0;
+    for (let s = 0; s < 4; s++) {
+      const tgt = (s === sIdx && CLIPS[s]) ? 1 : 0;
+      clipA[s] += (tgt - clipA[s]) * (reduce ? 1 : 1 - Math.pow(.004, dt));
+      if (Math.abs(tgt - clipA[s]) < .003) clipA[s] = tgt;
+      if (CLIPS[s]) vidCover += clipA[s];
+    }
+    vidCover = Math.min(1, vidCover);
+    const ssr = storyStage.getBoundingClientRect();
+    if (ssr.bottom > 0 && ssr.top < vh) drawStory(spg, dt);
+    const k = reduce ? 1 : 1 - Math.pow(.002, dt);
+    SK.forEach(key => SS[key] += (ST[key] - SS[key]) * k);
+    SS.blade += (ST.blade - SS.blade) * k;
+    storyHud();
+
+    // lookbook horizontal
+    if (looksDist) {
+      const lr = looks.getBoundingClientRect();
+      const lp = clamp(-lr.top / Math.max(1, lr.height - vh));
+      track.style.transform = `translate3d(${(-lp*looksDist).toFixed(1)}px,0,0)`;
+    }
+
+    if (renderer) {
+      if (!reduce) { wind.x += (mouse.x*1.4 - wind.x)*.04; wind.y += (mouse.y*.8 - wind.y)*.04; }
+      hU.uWind.value.set(wind.x, wind.y);
+      hU.uTime.value = clock; sparkMat.uniforms.uTime.value = clock;
+      dyeNow.a.lerp(dyeTarget.a, .06); dyeNow.b.lerp(dyeTarget.b, .06);
+
+      renderer.setScissorTest(false); renderer.setClearColor(0x000000, 0); renderer.clear();
+      renderer.setScissorTest(true);
+
+
+      const ss = storyStage.getBoundingClientRect();
+      if (ss.bottom > 0 && ss.top < vh && vidCover < .99) {
+        const n = isNarrow(), xf = n ? 0 : (innerWidth < 1000 ? .7 : 1);
+        shot({cut:SS.cut, dye:SS.dye, gloss:SS.gloss, frizz:SS.frizz, curl:SS.style*P.curl, freq:P.freq, wave:1, nat:NAT,
+              x:1.05*xf, y: n ? .55 : 0, scale: n ? .72 : 1, rotY:SS.rotY, camZ: n ? 5.2 : 4.9, alpha:1 - vidCover, blade:SS.blade},
+             rectOf(ss), clipOf(ss));
+      }
+    }
+    baBox.style.setProperty('--split', ba.v + '%');
+    requestAnimationFrame(frame);
+  }
+
+  /* ================= pickers ================= */
+  const swatches = $$('.swatch');
+  swatches.forEach(b => b.addEventListener('click', () => {
+    shade = b.dataset.shade;
+    swatches.forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+    if (renderer) { dyeTarget.a.set(SHADES[shade].a); dyeTarget.b.set(SHADES[shade].b); }
+    $('#pickedName').textContent = `${SHADES[shade].code} ${SHADES[shade].name}`;
+    $('#pickedName').nextSibling.textContent = ' · ' + SHADES[shade].note;
+    updateAfterNote();
+  }));
+  const patterns = $$('.pattern');
+  const ICON = {straight:[0,1], waves:[6,1.2], curls:[7,3], coils:[6,6]};
+  patterns.forEach(b => {
+    const [amp, fq] = ICON[b.dataset.pattern]; let d = '';
+    for (let i = 0; i <= 60; i++) { const t = i/60; d += (i ? 'L' : 'M') + (3 + t*50).toFixed(1) + ' ' + (13 + Math.sin(t*fq*Math.PI*2)*amp*(.4 + .6*t)).toFixed(1); }
+    b.querySelector('path').setAttribute('d', d);
+    b.addEventListener('click', () => {
+      pattern = b.dataset.pattern;
+      patterns.forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      const t = PATTERNS[pattern];
+      if (hasGSAP) gsap.to(P, {curl:t.curl, freq:t.freq, duration:reduce ? 0 : 1.4, ease:'power2.inOut'}); else { P.curl = t.curl; P.freq = t.freq; }
+      updateAfterNote();
+    });
+  });
+  function updateAfterNote(){}
+
+  /* ================= reviews stars (outline placeholders) ================= */
+  const star = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z"/></svg>';
+  $$('.rev .stars').forEach(s => s.innerHTML = star.repeat(5));
+
+  /* ================= smooth scroll, reveals ================= */
+  let lenis = null;
+  if (!reduce && typeof Lenis !== 'undefined') {
+    try {
+      lenis = new Lenis({lerp:.085, smoothWheel:true});
+      if (hasGSAP) { lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0); }
+      else { const loop = t => { lenis.raf(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+    } catch(e) { lenis = null; }
+  }
+  window.__kaLenis = lenis;
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href'), target = id.length > 1 && document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    if (lenis) lenis.scrollTo(target, {offset:0, duration:1.6}); else target.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  }));
+
+  if (hasGSAP && !reduce) {
+    gsap.to('.letterbox', {scaleY:0, duration:1.3, ease:'power3.inOut', delay:.15});
+    gsap.from('#heroCopy .inner > *', {y:26, opacity:.3, filter:'blur(6px)', duration:1.3, ease:'power3.out', stagger:.09, delay:.35, clearProps:'filter'});
+    $$('.ba header, .process header, .menu-sec header, .reviews header, .cta header, .proc li, .menu-grid > div, .rev article, .book').forEach(el => {
+      gsap.from(el, {y:44, opacity:.2, ease:'power2.out', scrollTrigger:{trigger:el, start:'top 94%', end:'top 60%', scrub:1}});
+    });
+    ScrollTrigger.create({trigger:baBox, start:'top 70%', once:true, onEnter:() => {
+      if (baTouched || baSwept) return; baSwept = true;
+      gsap.timeline().to(ba, {v:18, duration:1.1, ease:'power2.inOut'}).to(ba, {v:82, duration:1.6, ease:'power2.inOut'}).to(ba, {v:50, duration:1, ease:'power2.inOut',
+        onComplete:() => baRange.value = 50});
+    }});
+  } else {
+    $$('.letterbox').forEach(el => el.hidden = true);
+  }
+
+  // stat counters (numbers are already visible; they count up once when seen)
+  const fmt = n => n.toLocaleString('en-US');
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return; io.unobserve(en.target);
+      const el = en.target, end = +el.dataset.count, suf = el.dataset.suffix || '', t0 = performance.now();
+      const tick = now => { const p = clamp((now - t0)/1400), v = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        el.textContent = fmt(v) + suf; if (p < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }), {threshold:.6});
+    $$('[data-count]').forEach(el => io.observe(el));
+  }
+
+  /* ================= salon data (keep in sync with lib/salon.mjs) ================= */
+  const SALON = {
+    tz: 'America/Denver',
+    phone: '+1 (406) 555-0147',
+    // [opening hour, closing hour] by weekday, 0 = Sunday. null = closed. Last start time is one hour before closing.
+    hours: [[10,16], null, [10,19], [10,19], [10,19], [10,19], [9,18]],
+    services: [
+      ['Consultation','Free consultation','Free',15],
+      ['Cut','Signature cut & finish','$95',60], ['Cut','Layers & texture','$115',75], ['Cut','Bang trim','$20',15],
+      ['Cut',"Men's cut & beard line",'$50',40], ['Cut','Kids cut (under 10)','$35',30],
+      ['Color','Global color','$135+',120], ['Color','Balayage','$285+',210], ['Color','Root touch-up','$95',75],
+      ['Color','Highlights','$220+',180], ['Color','Gloss & toner','$65',45],
+      ['Styling','Blowout & finish','$60',45], ['Styling','Curls or soft waves','$75',60], ['Styling','Event updo','$120',75],
+      ['Styling','Bridal hair (trial included)','$350+',120],
+      ['Treatments','Keratin smoothing','$325+',150], ['Treatments','Bond repair','$55',45], ['Treatments','Scalp ritual','$65',50],
+      ['Treatments','Hair spa','$50',60]
+    ].map(([cat, name, price, mins]) => ({cat, name, price, mins})),
+    stylists: [
+      {name:'First available', role:'Any stylist'},
+      {name:'Olivia Hart', role:'Creative Director'},
+      {name:'Grace Whitman', role:'Master Colorist'},
+      {name:'Emma Lawson', role:'Senior Stylist'},
+      {name:'Jack Turner', role:"Men's & Kids' Stylist"}
+    ]
+  };
+  const todayISO = () => new Intl.DateTimeFormat('en-CA', {timeZone:SALON.tz, year:'numeric', month:'2-digit', day:'2-digit'}).format(new Date());
+  const nowMinutes = () => { const p = new Intl.DateTimeFormat('en-US', {timeZone:SALON.tz, hour:'2-digit', minute:'2-digit', hourCycle:'h23'}).formatToParts(new Date());
+    const g = t => +p.find(x => x.type === t).value; return g('hour') * 60 + g('minute'); };
+  const dow = iso => new Date(iso + 'T12:00:00Z').getUTCDay();
+  const addDays = (iso, n) => { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+  const longDate = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', {timeZone:'UTC', weekday:'long', month:'long', day:'numeric'});
+  const time12 = hm => { let [h, m] = hm.split(':').map(Number); const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return `${h}:${pad(m)} ${ap}`; };
+  function slotsFor(iso){
+    const hrs = SALON.hours[dow(iso)]; if (!hrs) return [];
+    const out = [], today = iso === todayISO(), now = today ? nowMinutes() : 0;
+    for (let t = hrs[0] * 60; t <= (hrs[1] - 1) * 60; t += 30) { if (today && t <= now + 60) continue; out.push(`${pad(Math.floor(t / 60))}:${pad(t % 60)}`); }
+    return out;
+  }
+  const nextOpenDay = from => { let d = from; for (let i = 0; i < 14; i++) { if (slotsFor(d).length) return d; d = addDays(d, 1); } return from; };
+  const digits = s => String(s || '').replace(/\D/g, '');
+  function normPhone(s){ let d = digits(s); if (d.length === 11 && d[0] === '1') d = d.slice(1); return d.length === 10 ? `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}` : null; }
+  function validate(b){
+    if (!b.service) return ['service', 'Choose a service.'];
+    if (!b.date) return ['date', 'Choose a date.'];
+    if (b.date < todayISO()) return ['date', 'That date has passed. Please choose another day.'];
+    if (!slotsFor(b.date).length) return ['date', dow(b.date) === 1 ? 'We are closed on Mondays. Please choose another day.' : 'There are no times left that day. Please choose another day.'];
+    if (!b.time || !slotsFor(b.date).includes(b.time)) return ['time', 'Choose a time within opening hours.'];
+    if (!b.name || b.name.trim().length < 2) return ['name', 'Add your name.'];
+    if (!normPhone(b.phone)) return ['phone', 'Add a 10-digit US mobile number.'];
+    if (b.email && !/^\S+@\S+\.\S+$/.test(b.email)) return ['email', 'Check your email address.'];
+    return null;
+  }
+
+  /* ================= server calls ================= */
+  const PREVIEW = !/^https?:$/.test(location.protocol) || /claude\.ai|claudeusercontent|anthropic|localhost/.test(location.hostname) && !/vercel/.test(location.hostname);
+  async function api(path, opts){
+    const r = await fetch(path, opts); let j = null;
+    try { j = await r.json(); } catch(e) {}
+    if (!r.ok || !j) { const err = new Error((j && j.error) || `The salon's booking system didn't answer (${r.status}).`); err.field = j && j.field; throw err; }
+    return j;
+  }
+  async function sendBooking(b){
+    if (PREVIEW) { const e = new Error("This preview can't send bookings. On the live website your request goes straight to the salon."); e.preview = true; throw e; }
+    return api('/api/book', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(b)});
+  }
+  async function freeTimes(date, stylist){
+    const slots = slotsFor(date);
+    if (PREVIEW || !slots.length) return slots;
+    try { const j = await api(`/api/availability?date=${date}&stylist=${encodeURIComponent(stylist || 'First available')}`); return slots.filter(s => j.free.includes(s)); }
+    catch(e) { return slots; }
+  }
+
+  /* ================= booking popup ================= */
+  const dlg = $('#bookDialog'), form = $('#bookForm'), svcSel = $('#svc'), styleSel = $('#stylist'), dateIn = $('#date'), timeSel = $('#time');
+  let grpCat = null, grp = null;
+  SALON.services.forEach(s => {
+    if (s.cat !== grpCat) { grpCat = s.cat; grp = document.createElement('optgroup'); grp.label = s.cat; svcSel.appendChild(grp); }
+    grp.appendChild(new Option(`${s.name} · ${s.price}`, s.name));
+  });
+  SALON.stylists.forEach(s => styleSel.add(new Option(s.name === 'First available' ? 'First available' : `${s.name}, ${s.role}`, s.name)));
+  dateIn.min = todayISO(); dateIn.max = addDays(todayISO(), 120);
+  dateIn.value = nextOpenDay(addDays(todayISO(), 1));
+  let timesReq = 0;
+  async function fillTimes(keep){
+    const iso = dateIn.value, req = ++timesReq;
+    const slots = iso ? slotsFor(iso) : [];
+    const free = iso ? await freeTimes(iso, styleSel.value) : [];
+    if (req !== timesReq) return;
+    timeSel.innerHTML = '';
+    if (!slots.length) { timeSel.add(new Option(iso && dow(iso) === 1 ? 'Closed on Mondays' : 'No times left this day', '')); timeSel.disabled = true; return; }
+    timeSel.disabled = false;
+    slots.forEach(s => { const ok = free.includes(s); const o = new Option(time12(s) + (ok ? '' : ' · booked'), s); o.disabled = !ok; timeSel.add(o); });
+    const pick = (keep && free.includes(keep)) ? keep : (free.find(s => s >= '14:00') || free[0]);
+    if (pick) timeSel.value = pick;
+  }
+  dateIn.addEventListener('change', () => fillTimes(timeSel.value));
+  styleSel.addEventListener('change', () => fillTimes(timeSel.value));
+  fillTimes();
+
+  function openBook(){
+    if (dlg.open) return;
+    $('#bookDone').hidden = true; form.hidden = false; $('#formErr').hidden = true;
+    fillTimes(timeSel.value);
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+    document.documentElement.style.overflow = 'hidden';
+    if (window.__kaLenis) window.__kaLenis.stop();
+  }
+  function closeBook(){ if (dlg.open) { if (typeof dlg.close === 'function') dlg.close(); else { dlg.removeAttribute('open'); dlg.dispatchEvent(new Event('close')); } } }
+  dlg.addEventListener('close', () => { document.documentElement.style.overflow = ''; if (window.__kaLenis) window.__kaLenis.start(); });
+  dlg.addEventListener('click', e => { if (e.target === dlg) closeBook(); });
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-open-book],[data-close-book],[data-open-ava]'); if (!t) return;
+    e.preventDefault();
+    if (t.hasAttribute('data-open-book')) openBook();
+    else if (t.hasAttribute('data-close-book')) closeBook();
+    else { closeBook(); startAva(); }
+  });
+
+  function showErr(field, msg){
+    const err = $('#formErr'); err.textContent = msg; err.hidden = false;
+    const el = field && form.elements[field];
+    if (el) { el.setAttribute('aria-invalid', 'true'); el.focus(); }
+  }
+  function showDone(b, ref){
+    form.hidden = true;
+    $('#doneName').textContent = String(b.name).trim().split(/\s+/)[0];
+    $('#doneRef').textContent = ref;
+    const dl = $('#doneList'); dl.innerHTML = '';
+    [['Service', b.service], ['Stylist', b.stylist || 'First available'], ['When', `${longDate(b.date)} at ${time12(b.time)}`], ['Phone', b.phone]].forEach(([k, v]) => {
+      const dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = k; dd.textContent = v; dl.append(dt, dd);
+    });
+    $('#bookDone').hidden = false;
+  }
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    $('#formErr').hidden = true; $$('[aria-invalid]', form).forEach(x => x.removeAttribute('aria-invalid'));
+    const b = Object.fromEntries(new FormData(form)); b.source = 'website';
+    const v = validate(b); if (v) { showErr(v[0], v[1]); return; }
+    b.phone = normPhone(b.phone);
+    const btn = $('#bookSubmit'); btn.disabled = true; btn.textContent = 'Sending…';
+    try { const j = await sendBooking(b); showDone(j.booking || b, j.ref); fillTimes(); }
+    catch(x) { showErr(x.field, x.message + (x.preview ? '' : ` If this keeps happening, call or text ${SALON.phone}.`)); if (x.field === 'time') fillTimes(); }
+    finally { btn.disabled = false; btn.textContent = 'Request appointment'; }
+  });
+
+  /* ================= Ava, the voice receptionist (ElevenLabs Agents) ================= */
+  const ava = $('#ava'), avaLog = $('#avaLog'), avaStatus = $('#avaStatus'), avaOrb = $('#avaOrb'), fab = $('#avaFab'), avaEndBtn = $('#avaEnd'), avaMute = $('#avaMute');
+  const SDK_URL = 'https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.30.0/dist/lib.iife.js';
+  let conv = null, avaBusy = false, muted = false, lvlRaf = 0;
+  const draft = {};
+  const logLine = (cls, text) => { const p = document.createElement('p'); p.className = cls; p.textContent = text; avaLog.appendChild(p); avaLog.scrollTop = avaLog.scrollHeight; };
+  const setStatus = t => { avaStatus.textContent = t; };
+  const loadSDK = () => window.ElevenLabsClient ? Promise.resolve() : new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = SDK_URL; s.onload = res; s.onerror = () => rej(new Error('sdk')); document.head.appendChild(s);
+  });
+  function openPanel(){ ava.hidden = false; fab.hidden = true; ava.setAttribute('open-anim', ''); }
+  function closePanel(){ ava.hidden = true; fab.hidden = false; delete ava.dataset.mode; }
+  function renderCard(ref){
+    const rows = [['Service', draft.service], ['Stylist', draft.stylist], ['Date', draft.date && longDate(draft.date)], ['Time', draft.time && time12(draft.time)],
+      ['Name', draft.name], ['Phone', draft.phone]].filter(r => r[1]);
+    if (ref) rows.push(['Reference', ref]);
+    const dl = $('#avaCardList'); dl.innerHTML = '';
+    rows.forEach(([k, v]) => { const dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = k; dd.textContent = v; dl.append(dt, dd); });
+    $('#avaCard').hidden = !rows.length;
+  }
+  function mirrorToForm(){
+    if (draft.service) svcSel.value = draft.service;
+    if (draft.stylist) styleSel.value = draft.stylist;
+    if (draft.date) { dateIn.value = draft.date; fillTimes(draft.time); }
+    ['name', 'phone', 'email', 'notes'].forEach(k => { if (draft[k]) form.elements[k].value = draft[k]; });
+  }
+  const findService = q => { q = String(q || '').toLowerCase().trim(); if (!q) return null;
+    return SALON.services.find(s => s.name.toLowerCase() === q) || SALON.services.find(s => { const n = s.name.toLowerCase().split(' (')[0]; return n.includes(q) || q.includes(n); }) || null; };
+  const findStylist = q => { q = String(q || '').toLowerCase().trim(); if (!q) return null;
+    if (/any|first|whoever|no pref|anyone/.test(q)) return SALON.stylists[0];
+    return SALON.stylists.find(s => s.name.toLowerCase() === q) || SALON.stylists.find(s => s.name.toLowerCase().split(' ')[0] === q.split(' ')[0]) || null; };
+
+  async function avaOpenTimes(p = {}){
+    const date = String(p.date || '');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return 'I need the date as YYYY-MM-DD. Ask the caller which day they want.';
+    if (date < todayISO()) return 'That date has already passed.';
+    if (!slotsFor(date).length) return dow(date) === 1 ? 'The salon is closed on Mondays.' : 'There are no open times left that day.';
+    const stylist = (findStylist(p.stylist) || SALON.stylists[0]).name;
+    const free = await freeTimes(date, stylist);
+    if (!free.length) return `${longDate(date)} is fully booked${stylist !== 'First available' ? ' with ' + stylist : ''}. Suggest another day.`;
+    return `Open start times on ${longDate(date)}${stylist !== 'First available' ? ' with ' + stylist : ''}: ${free.map(time12).join(', ')}.`;
+  }
+  function avaUpdate(p = {}){
+    const problems = [];
+    if (p.service) { const s = findService(p.service); if (s) draft.service = s.name; else problems.push(`"${p.service}" is not on the menu.`); }
+    if (p.stylist) { const s = findStylist(p.stylist); if (s) draft.stylist = s.name; else problems.push(`There is no stylist called "${p.stylist}".`); }
+    if (p.date) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(p.date)) problems.push('The date must be YYYY-MM-DD.');
+      else if (p.date < todayISO()) problems.push('That date has passed.');
+      else if (!slotsFor(p.date).length) problems.push(dow(p.date) === 1 ? 'The salon is closed on Mondays.' : 'No open times that day.');
+      else { draft.date = p.date; if (draft.time && !slotsFor(p.date).includes(draft.time)) delete draft.time; }
+    }
+    if (p.time) {
+      const t = String(p.time).trim().padStart(5, '0');
+      if (!/^\d{2}:\d{2}$/.test(t)) problems.push('The time must be HH:MM in 24-hour format.');
+      else if (draft.date && !slotsFor(draft.date).includes(t)) problems.push(`${time12(t)} is not an open start time that day. Call get_open_times.`);
+      else draft.time = t;
+    }
+    if (p.name) draft.name = String(p.name).trim();
+    if (p.phone) { const n = normPhone(p.phone); if (n) draft.phone = n; else problems.push('The phone number needs 10 digits.'); }
+    if (p.email) draft.email = String(p.email).trim();
+    if (p.notes) draft.notes = String(p.notes).trim();
+    renderCard(); mirrorToForm();
+    const missing = ['service', 'date', 'time', 'name', 'phone'].filter(k => !draft[k]);
+    return JSON.stringify({booking: draft, missing, problems});
+  }
+  async function avaSubmit(){
+    const b = Object.assign({stylist:'First available'}, draft, {source:'ava'});
+    const v = validate(b); if (v) return `Not booked yet: ${v[1]}`;
+    try { const j = await sendBooking(b); renderCard(j.ref); logLine('sys', `Booked · reference ${j.ref}`); fillTimes();
+      return `Booked. Reference ${j.ref}. Tell the caller we'll text ${b.phone} to confirm.`; }
+    catch(e) { return `The booking did not go through: ${e.message}`; }
+  }
+
+  async function startAva(){
+    openPanel();
+    if (conv || avaBusy) return;
+    avaBusy = true; avaLog.innerHTML = ''; renderCard();
+    try {
+      if (PREVIEW) { const e = new Error('preview'); e.msg = "Ava answers on the live website. This preview can't open a voice call."; throw e; }
+      setStatus('Waiting for your microphone…');
+      try { const st = await navigator.mediaDevices.getUserMedia({audio:true}); st.getTracks().forEach(t => t.stop()); }
+      catch(e) { e.msg = 'Ava needs your microphone to talk. Allow microphone access in your browser, or book online instead.'; throw e; }
+      setStatus('Connecting…');
+      const [cfg] = await Promise.all([api('/api/config'), loadSDK()]);
+      if (!cfg.agentId) { const e = new Error('offline'); e.msg = `Ava is offline right now. Please book online or call ${SALON.phone}.`; throw e; }
+      conv = await window.ElevenLabsClient.Conversation.startSession({
+        agentId: cfg.agentId,
+        dynamicVariables: {today: `${longDate(todayISO())}, ${todayISO().slice(0, 4)}`, today_iso: todayISO(), salon_phone: SALON.phone},
+        clientTools: {get_open_times: avaOpenTimes, update_booking: avaUpdate, submit_booking: avaSubmit},
+        onConnect: () => { setStatus('Listening'); avaMute.disabled = false; avaEndBtn.textContent = 'End call'; },
+        onDisconnect: () => { conv = null; setStatus('Call ended'); delete ava.dataset.mode; avaMute.disabled = true; avaEndBtn.textContent = 'Call again';
+          cancelAnimationFrame(lvlRaf); avaOrb.style.removeProperty('--lvl'); logLine('sys', 'Call ended'); },
+        onMessage: m => { if (m && m.message) logLine((m.role || m.source) === 'user' ? 'user' : 'ai', m.message); },
+        onModeChange: ({mode}) => { ava.dataset.mode = mode; if (!muted) setStatus(mode === 'speaking' ? 'Ava is speaking' : 'Listening'); },
+        onError: msg => { logLine('sys', 'Connection problem. Please try again.'); console.warn('Ava:', msg); }
+      });
+      const tick = () => {
+        if (!conv) return; let v = 0;
+        try { v = ava.dataset.mode === 'speaking' ? conv.getOutputVolume() : conv.getInputVolume(); } catch(e) {}
+        avaOrb.style.setProperty('--lvl', (1 + Math.min(.35, v * .9)).toFixed(3));
+        lvlRaf = requestAnimationFrame(tick);
+      };
+      tick();
+    } catch(e) {
+      conv = null; setStatus('Not connected'); avaEndBtn.textContent = 'Try again';
+      logLine('sys', e.msg || `Ava couldn't connect. Please try again, or book online.`);
+      console.warn('Ava:', e);
+    } finally { avaBusy = false; }
+  }
+  async function endAva(){ const c = conv; conv = null; if (c) { try { await c.endSession(); } catch(e) {} } }
+  avaEndBtn.addEventListener('click', () => { if (conv) endAva(); else startAva(); });
+  $('#avaClose').addEventListener('click', async () => { await endAva(); closePanel(); });
+  avaMute.addEventListener('click', () => {
+    if (!conv) return; muted = !muted;
+    try { conv.setMicMuted(muted); } catch(e) {}
+    avaMute.textContent = muted ? 'Unmute mic' : 'Mute mic'; setStatus(muted ? 'Mic muted' : 'Listening');
+  });
+  $('#copyPhone').addEventListener('click', e => {
+    const btn = e.currentTarget, el = $('#phoneNo');
+    const reset = () => setTimeout(() => btn.textContent = 'Copy', 1600);
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; reset(); };
+    try { navigator.clipboard.writeText(el.textContent).then(() => { btn.textContent = 'Copied'; reset(); }, fallback); } catch(err) { fallback(); }
+  });
+
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 120); });
+  resize();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layoutLooks(); if (hasGSAP) ScrollTrigger.refresh(); });
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
