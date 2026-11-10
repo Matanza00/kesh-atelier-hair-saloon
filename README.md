@@ -16,7 +16,7 @@ Cinematic website for a hair and beauty salon in Kalispell, Montana, with online
 ## Environment variables (Vercel → Project → Settings → Environment Variables)
 | Name | What it is |
 |---|---|
-| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Set automatically when you add **Upstash for Redis** from Vercel Storage |
+| `BLOB_READ_WRITE_TOKEN` | Set automatically when the private **Vercel Blob** store `kesh-atelier-bookings` is connected to the project |
 | `ELEVENLABS_AGENT_ID` | The ID of Ava's agent in ElevenLabs |
 | `ADMIN_KEY` | Any long secret; used to open `/admin` |
 
