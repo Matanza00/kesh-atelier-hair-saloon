@@ -1,0 +1,22 @@
+{
+  "name": "kesh-atelier-linkedin-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "remotion render"
+  },
+  "dependencies": {
+    "@fontsource/dm-mono": "^5.2.6",
+    "@fontsource/instrument-sans": "^5.2.6",
+    "@fontsource/playfair-display": "^5.2.6",
+    "@remotion/cli": "^4.0.538",
+    "@remotion/fonts": "^4.0.538",
+    "@remotion/media": "^4.0.538",
+    "@remotion/transitions": "^4.0.538",
+    "@types/three": "^0.128.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "remotion": "^4.0.538",
+    "three": "^0.128.0"
+  }
+}
