@@ -1,4 +1,4 @@
-# Kesh Atelier
+# Kesh Atelier - Hair Saloon
 
 Cinematic website for a hair and beauty salon in Kalispell, Montana, with online booking and Ava, a voice receptionist built on ElevenLabs Agents. Hosted on Vercel.
 
@@ -21,3 +21,13 @@ Cinematic website for a hair and beauty salon in Kalispell, Montana, with online
 | `ADMIN_KEY` | Any long secret; used to open `/admin` |
 
 After changing environment variables, redeploy.
+
+## License
+Source-available under the **PolyForm Noncommercial License 1.0.0** (`LICENSE.md`).
+
+- **Allowed:** using, studying, changing and sharing this project for personal, educational and other noncommercial purposes, and contributing improvements (see `CONTRIBUTING.md`).
+- **Not allowed without written permission:** selling this project or any copy or adaptation of it, or using it to earn money, for example as a paid client site, a template you sell, or a commercial product.
+
+For a commercial license, contact NXCSOL at https://nxcsol.com.
+
+Third-party libraries loaded from CDNs (Three.js, GSAP, Lenis, the ElevenLabs client) and the `@vercel/blob` package keep their own licenses.
